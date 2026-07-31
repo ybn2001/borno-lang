@@ -1,13 +1,1 @@
-# 01_hello.brn — Hello world, variables, and arithmetic
 
-dekhao("Assalamu alaikum, Borno!");
-
-dhori a = 10;
-dhori b = 3;
-
-dekhao("Jog (sum):", a + b);
-dekhao("Biyog (difference):", a - b);
-dekhao("Gun (product):", a * b);
-dekhao("Bhag (quotient):", a / b);
-dekhao("Bhagshesh (remainder):", a % b);   # extra feature: modulo
-dekhao("Ghat (power):", a ^ b);            # extra feature: power
