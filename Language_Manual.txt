@@ -1,0 +1,113 @@
+=======================================================================
+ BORNO (.brn) — LANGUAGE MANUAL
+=======================================================================
+
+Borno is a small dynamically-typed language with Bengali keywords,
+built with Flex + Bison. Source files use the extension: .brn
+
+
+1. HOW TO COMPILE THE INTERPRETER
+-----------------------------------------------------------------------
+Requirements: flex, bison, gcc, make
+(Ubuntu/Debian:  sudo apt install flex bison gcc make)
+
+    make
+
+This produces an executable named  ./borno
+
+
+2. HOW TO RUN A PROGRAM
+-----------------------------------------------------------------------
+    ./borno program.brn
+
+Example:
+    ./borno examples/01_hello.brn
+
+
+3. SYNTAX GUIDE
+-----------------------------------------------------------------------
+
+3.1 Statements
+    Every statement ends with a semicolon ;
+    Blocks are wrapped in curly braces { }
+    Comments start with  #  or  //  and run to end of line.
+
+3.2 Variables (dynamically typed: number or string)
+    dhori x = 10;            # declare ("dhori" = let/hold)
+    x = x + 5;               # reassign
+    dhori naam = "Borno";     # strings use double quotes
+
+3.3 Printing
+    dekhao("Hello");                 # "dekhao" = show
+    dekhao("x =", x, "naam =", naam);
+    Multiple arguments are separated by a space; a newline is
+    added automatically. Escapes \n \t \" \\ work inside strings.
+
+3.4 Input
+    dhori n    = nao();                   # "nao" = take
+    dhori naam = nao("Tomar naam? ");     # optional prompt
+    If the user types a valid number, nao() returns a number;
+    otherwise it returns the text as a string.
+
+3.5 Operators (highest precedence first)
+    - (negate)   na (not)
+    ^            power (right-associative)
+    * / %        multiply, divide, remainder
+    + -          add/concatenate, subtract
+    < > <= >=    comparisons
+    == !=        equality (works on numbers AND strings)
+    ebong        logical AND  (short-circuits)
+    ba           logical OR   (short-circuits)
+
+    Note: + with a string concatenates:  "mark: " + 90  →  "mark: 90"
+
+3.6 Booleans
+    sotti   = true   (the number 1)
+    mittha  = false  (the number 0)
+    0 and "" are falsy; everything else is truthy.
+
+3.7 Conditionals ("jodi" = if, "nahole" = else)
+    jodi (marks >= 80) {
+        dekhao("A+");
+    } nahole jodi (marks >= 60) {
+        dekhao("B");
+    } nahole {
+        dekhao("Fail");
+    }
+
+3.8 While loop ("jotokkhon" = as long as)
+    dhori i = 1;
+    jotokkhon (i <= 5) {
+        dekhao(i);
+        i = i + 1;
+    }
+
+3.9 For loop ("chokro" = cycle)
+    chokro (dhori k = 1; k <= 10; k = k + 1) {
+        dekhao(7 * k);
+    }
+
+3.10 Built-in functions
+    borgomul(x)    square root of x
+    poromman(x)    absolute value of x
+    dorgho(s)      length of string s
+
+4. ERRORS
+-----------------------------------------------------------------------
+Syntax errors report the line number:
+    Borno: syntax error on line 3: syntax error
+Runtime errors stop the program with a message, e.g.:
+    Borno runtime error: undefined variable 'x'
+    Borno runtime error: division by zero
+
+5. KEYWORD CHEAT SHEET
+-----------------------------------------------------------------------
+    dhori      let / declare        jodi        if
+    dekhao     print                nahole      else
+    nao        input                jotokkhon   while
+    sotti      true                 chokro      for
+    mittha     false                ebong       and
+    borgomul   sqrt                 ba          or
+    poromman   abs                  na          not
+    dorgho     string length
+=======================================================================
