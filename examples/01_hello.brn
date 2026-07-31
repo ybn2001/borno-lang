@@ -1,0 +1,2 @@
+// 01_hello.brn - Hello World example
+print "Hello, World!"
