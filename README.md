@@ -55,10 +55,12 @@ There are three stages:
 
 ## How to run it
 
-You need flex, bison, gcc and make. On Ubuntu:
+ need flex, bison, gcc and make. On Ubuntu/Kali:
 
 ```bash
 sudo apt install flex bison gcc make
 make
 ./borno examples/01_hello.brn
-``
+```
+
+The `examples/` folder has 5 programs that show every feature. `Language_Manual.txt` has the full syntax guide.
